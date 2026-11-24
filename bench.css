@@ -1,0 +1,116 @@
+:root{
+  --board:#C9A272; --hole:#6E4F2E; --ink:#241A11; --paint:#8A2B1D;
+  --paper:#F4EBDD; --paper-ink:#211A14; --rule:#D8C7AC; --accent:#A23B2A;
+  --tag:#EAD7A6; --tag-ink:#241A11; --tag-edge:#C9B07A;
+  --clipboard:#7A4B25; --metal:#B9BDC2; --metal-dark:#6F757C;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --board:#4A3826; --hole:#20170E; --ink:#F1E6D3; --paint:#E9DDC6;
+    --paper:#17130F; --paper-ink:#EFE6D8; --rule:#3A3026; --accent:#E8846F;
+  }
+}
+:root[data-theme="dark"]{
+  --board:#4A3826; --hole:#20170E; --ink:#F1E6D3; --paint:#E9DDC6;
+  --paper:#17130F; --paper-ink:#EFE6D8; --rule:#3A3026; --accent:#E8846F;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--paper-ink);
+  font:17px/1.6 "Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif}
+img{display:block;max-width:100%;height:auto}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+.narrow{max-width:760px}
+
+/* the pegboard */
+.board{background-color:var(--board);
+  background-image:radial-gradient(circle,var(--hole) 0 3.2px,rgba(0,0,0,0) 4.2px);
+  background-size:30px 30px;background-position:15px 15px;
+  color:var(--ink);padding:44px 0 72px;border-bottom:10px solid var(--clipboard)}
+.mark{font:800 clamp(56px,11vw,132px)/.9 "Big Shoulders Stencil Display",Impact,sans-serif;
+  letter-spacing:.02em;margin:0;color:var(--ink)}
+.lede{font-size:clamp(18px,2.2vw,22px);font-weight:600;margin:10px 0 0;max-width:34em;
+  background:var(--board);display:inline-block;padding:2px 6px 2px 0}
+
+.rack{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 32px;margin-top:56px;align-items:start}
+.slot{position:relative;display:flex;flex-direction:column;align-items:center;padding-top:22px}
+.peg{position:absolute;top:0;left:50%;width:16px;height:16px;margin-left:-8px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#E4E7EA,var(--metal-dark));box-shadow:0 2px 0 rgba(0,0,0,.35);z-index:3}
+
+.obj{position:relative;display:block;width:300px;max-width:100%;text-decoration:none;
+  transform-origin:50% 0;transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.slot:nth-child(1) .obj{transform:rotate(-2deg)}
+.slot:nth-child(2) .obj{transform:rotate(1.6deg)}
+.obj:hover,.obj:focus-visible{transform:rotate(0deg)}
+.obj:focus-visible{outline:3px solid var(--ink);outline-offset:6px}
+
+.clipboard{background:var(--clipboard);border-radius:14px;padding:44px 14px 14px;
+  box-shadow:0 14px 24px rgba(40,24,8,.35),inset 0 0 0 2px rgba(255,255,255,.08)}
+.clipboard img{border-radius:8px}
+.clip{position:absolute;top:-6px;left:50%;width:120px;height:44px;margin-left:-60px;border-radius:10px 10px 6px 6px;
+  background:linear-gradient(#DADDE0,var(--metal) 55%,var(--metal-dark));box-shadow:0 3px 0 rgba(0,0,0,.3)}
+.clip::after{content:"";position:absolute;top:8px;left:50%;width:22px;height:12px;margin-left:-11px;border-radius:6px;background:var(--clipboard)}
+
+.receipt{padding-top:26px;filter:drop-shadow(0 14px 18px rgba(40,24,8,.35))}
+.receipt img{width:100%}
+.receipt::after{content:"";display:block;height:12px;
+  background:linear-gradient(-45deg,transparent 8px,#FCFAF5 0) 0 0/16px 12px repeat-x,
+             linear-gradient(45deg,transparent 8px,#FCFAF5 0) 0 0/16px 12px repeat-x}
+.bulldog{position:absolute;top:0;left:50%;width:70px;height:34px;margin-left:-35px;border-radius:6px 6px 3px 3px;
+  background:linear-gradient(#3A3F45,#16191C);z-index:2}
+.bulldog::before{content:"";position:absolute;top:-12px;left:50%;width:30px;height:18px;margin-left:-15px;
+  border:3px solid var(--metal);border-bottom:0;border-radius:14px 14px 0 0}
+
+/* shipping tag under each object */
+.tag{position:relative;width:300px;max-width:100%;margin-top:26px;padding:18px 18px 16px 30px;
+  background:var(--tag);color:var(--tag-ink);
+  clip-path:polygon(18px 0,100% 0,100% 100%,18px 100%,0 calc(100% - 18px),0 18px);
+  box-shadow:inset 0 0 0 1px var(--tag-edge)}
+.tag::before{content:"";position:absolute;left:8px;top:50%;width:11px;height:11px;margin-top:-6px;border-radius:50%;
+  background:var(--board);box-shadow:0 0 0 2px var(--tag-edge)}
+.tag h2{font:800 30px/1 "Big Shoulders Stencil Display",Impact,sans-serif;letter-spacing:.02em;margin:0 0 8px}
+.tag h2 a{color:var(--tag-ink);text-decoration:none}
+.tag h2 a:hover{text-decoration:underline}
+.tag p{margin:0 0 10px;font-size:16px;line-height:1.5}
+.tag .price{border-top:1px dashed var(--tag-edge);padding-top:9px;margin-bottom:6px}
+.tag .more{margin:0}
+.tag .more a{color:#7C2A1C;font-weight:700}
+
+/* the empty spot, painted like a workshop shadow board */
+.slot-empty{padding-top:22px}
+.outline{width:220px;height:300px;margin-top:6px;border:4px solid var(--paint);border-radius:18px 18px 60px 60px;position:relative}
+.outline span{position:absolute;left:50%;top:-4px;width:70px;height:40px;margin-left:-35px;border:4px solid var(--paint);border-top:0;border-radius:0 0 14px 14px;background:var(--board)}
+.paint{font:800 26px/1.05 "Big Shoulders Stencil Display",Impact,sans-serif;letter-spacing:.06em;color:var(--paint);
+  text-align:center;margin:14px 0 0;max-width:240px;background:var(--board);padding:6px 10px}
+.nw{white-space:nowrap}
+
+/* paper section */
+.paper{padding:64px 0 40px}
+.h{font:800 clamp(34px,5vw,48px)/1.02 "Big Shoulders Stencil Display",Impact,sans-serif;letter-spacing:.01em;margin:0 0 26px}
+.rules{list-style:none;counter-reset:r;margin:0;padding:0}
+.rules li{counter-increment:r;position:relative;padding:16px 0 16px 64px;border-top:2px solid var(--rule)}
+.rules li:last-child{border-bottom:2px solid var(--rule)}
+.rules li::before{content:counter(r);position:absolute;left:0;top:6px;
+  font:800 52px/1 "Big Shoulders Stencil Display",Impact,sans-serif;color:var(--accent)}
+.rules b{display:block;font-size:19px}
+.maker{margin-top:44px;font-size:19px}
+.maker p{margin:0 0 8px}
+.maker a,.foot a{color:var(--accent);font-weight:700}
+
+.foot{padding:24px 0 48px;font-size:15px}
+
+@media (max-width:900px){
+  .rack{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  .board{padding:28px 0 48px}
+  .rack{grid-template-columns:1fr;gap:56px;margin-top:40px}
+  .slot-empty .outline{height:110px;width:150px;border-radius:14px 14px 40px 40px}
+  .slot-empty .paint{font-size:22px}
+  .rules li{padding-left:52px}
+  .rules li::before{font-size:44px}
+}
+@media (prefers-reduced-motion:reduce){
+  .obj{transition:none}
+}
