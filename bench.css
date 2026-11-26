@@ -142,3 +142,87 @@ img{display:block;max-width:100%;height:auto}
   .shelf{margin-top:56px}
 }
 @media (prefers-reduced-motion:reduce){ .mini .tag{transition:none} }
+
+/* 11-26: site nav, tool finder, "on this device", ask for a tool, Your bench */
+[hidden]{display:none!important}
+.topnav{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:6px 10px;margin:-20px 0 18px}
+.topnav a{font-weight:700;font-size:16px;color:var(--ink);text-decoration:none;background:var(--board);
+  padding:4px 10px;border:2px solid var(--ink);border-radius:999px}
+.topnav a:hover,.topnav a:focus-visible{background:var(--ink);color:var(--board)}
+.topnav a[aria-current="page"]{background:var(--ink);color:var(--board)}
+
+.mine{margin:18px 0 0;font-size:17px;background:var(--tag);color:var(--tag-ink);display:inline-block;
+  padding:8px 14px;border-radius:4px;box-shadow:0 3px 0 rgba(40,24,8,.25);max-width:100%}
+.mine a{color:var(--tag-ink);font-weight:700}
+.mine .mine-go{color:#7C2A1C;margin-left:6px;white-space:nowrap}
+.pro-dot{display:inline-block;font:800 12px/1 "Instrument Sans",sans-serif;letter-spacing:.06em;color:#FCFAF5;
+  background:#7C2A1C;border-radius:3px;padding:3px 5px 2px;margin-left:5px;vertical-align:2px}
+
+.find{margin:30px 0 0;max-width:720px}
+.find-label{display:inline-block;font:800 28px/1 "Big Shoulders Stencil Display",Impact,sans-serif;letter-spacing:.04em;
+  color:var(--ink);background:var(--board);padding:2px 8px 4px 0}
+.find-row{display:flex;gap:10px;margin-top:10px}
+.find input{flex:1;min-width:0;font:600 19px/1.2 "Instrument Sans",system-ui,sans-serif;color:var(--tag-ink);
+  background:#FCF6E8;border:3px solid var(--ink);border-radius:8px;padding:12px 14px;box-shadow:0 4px 0 rgba(40,24,8,.3)}
+.find input::placeholder{color:#6B5A45}
+.find input:focus{outline:3px solid var(--accent);outline-offset:2px}
+.find-clear{font:700 16px "Instrument Sans",sans-serif;color:var(--ink);background:var(--board);border:2px solid var(--ink);
+  border-radius:8px;padding:0 14px;cursor:pointer}
+.find-clear:hover{background:var(--ink);color:var(--board)}
+.chips{display:flex;flex-wrap:wrap;gap:12px 10px;margin-top:16px}
+.chip{position:relative;font:700 15px/1 "Instrument Sans",sans-serif;color:var(--tag-ink);background:var(--tag);
+  border:0;padding:9px 12px 9px 24px;cursor:pointer;
+  clip-path:polygon(10px 0,100% 0,100% 100%,10px 100%,0 50%);box-shadow:inset 0 0 0 1px var(--tag-edge)}
+.chip::before{content:"";position:absolute;left:9px;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:var(--board)}
+.chip:hover{background:#F3E5BE}
+.chip[aria-pressed="true"]{background:#7C2A1C;color:#FCFAF5}
+.chip:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.find-status{min-height:1.5em;margin:12px 0 0;font-weight:700;color:var(--ink);background:var(--board);display:inline-block;padding:0 6px 0 0}
+.find-status:empty{display:none}
+
+.none{margin-top:40px}
+.none .paint{max-width:none;text-align:left;display:inline-block;font-size:clamp(24px,4vw,34px)}
+.none-sub{font-size:18px;font-weight:600;background:var(--board);display:inline-block;padding:2px 6px 2px 0;margin:12px 0 0}
+.none-sub a,.paint-sub{color:var(--paint)}
+a.paint{display:block;text-decoration:none}
+a.paint:hover{text-decoration:underline}
+.paint-sub{display:block;font:700 15px/1.3 "Instrument Sans",sans-serif;letter-spacing:0;margin-top:6px;text-decoration:underline}
+
+/* ask for a tool: an order pad */
+.ask{margin-top:64px;padding-top:8px}
+.ask-lede{font-size:18px;margin:0 0 22px}
+.ask-card{background:#FCF6E8;color:var(--tag-ink);border:2px solid var(--tag-edge);border-top:14px solid #7C2A1C;
+  border-radius:4px 4px 10px 10px;padding:22px 20px 18px;box-shadow:0 10px 20px rgba(40,24,8,.14);}
+.ask-card label{display:block;font-weight:700;font-size:16px;margin:12px 0 6px}
+.ask-card label:first-child{margin-top:0}
+.ask-card input,.ask-card textarea,.ask-card select{width:100%;font:17px/1.45 "Instrument Sans",system-ui,sans-serif;color:var(--tag-ink);
+  background:#FFFDF8;border:2px solid #8C7650;border-radius:6px;padding:10px 12px}
+.ask-card textarea{resize:vertical;min-height:110px}
+.ask-card input:focus,.ask-card textarea:focus,.ask-card select:focus{outline:3px solid #7C2A1C;outline-offset:1px}
+.ask-acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.btn{display:inline-block;font:700 17px/1 "Instrument Sans",sans-serif;color:#FCFAF5;background:#7C2A1C;border:2px solid #7C2A1C;
+  border-radius:8px;padding:12px 18px;text-decoration:none;cursor:pointer}
+.btn:hover{background:#5E1F14;border-color:#5E1F14}
+.btn.ghost{background:transparent;color:inherit;border-color:currentColor}
+.btn.ghost:hover{background:rgba(124,42,28,.08)}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.btn:disabled{opacity:1;background:#B9AE9C;border-color:#B9AE9C;color:#3A3026;cursor:not-allowed}
+.ask-msg{min-height:1.4em;margin:12px 0 0;font-weight:600}
+.ask-msg.ok{color:#2F5A1E}
+.ask-msg.bad{color:#7C2A1C}
+
+/* short header used on every inner page */
+.board.short{padding:22px 0 30px}
+.board.short .bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px}
+.board.short .mark{font-size:clamp(44px,8vw,72px)}
+.board.short .mark a{color:var(--ink);text-decoration:none}
+.board.short .topnav{margin:0}
+
+@media (max-width:640px){
+  .topnav{justify-content:flex-start;gap:6px;margin:-6px 0 16px}
+  .topnav a{font-size:14px;padding:4px 8px;border-width:2px}
+  .find-label{font-size:24px}
+  .find input{font-size:17px}
+  .chip{font-size:14px}
+  .ask-card{padding:18px 14px 16px}
+}

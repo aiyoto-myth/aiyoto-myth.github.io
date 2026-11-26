@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Your bench · samsbench</title>
+<meta name="description" content="See which samsbench tools have work saved in this browser, which have Pro, and back everything up to one file you can open on another device.">
+<link rel="canonical" href="https://samsbench.com/my/">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#C9A272">
+<meta property="og:title" content="Your bench · samsbench">
+<meta property="og:description" content="Everything the samsbench tools saved in this browser, and one backup file for all of it.">
+<meta property="og:image" content="https://samsbench.com/img/og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@700;800&family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/bench.css">
+<style>
+.prose h1{font:800 clamp(38px,6vw,58px)/1 "Big Shoulders Stencil Display",Impact,sans-serif;margin:0 0 14px}
+.prose h2{font:800 32px/1.05 "Big Shoulders Stencil Display",Impact,sans-serif;margin:48px 0 10px}
+.prose p{margin:0 0 14px;font-size:18px}
+.prose a{color:var(--accent);font-weight:700}
+.prose a.btn{color:#FCFAF5}
+.count{font-size:19px;font-weight:700;margin:0 0 18px}
+.bench-list{list-style:none;margin:0;padding:0;border-top:2px solid var(--rule)}
+.bench-row{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:10px 18px;padding:14px 0;border-bottom:2px solid var(--rule)}
+.bench-row h3{font:800 28px/1 "Big Shoulders Stencil Display",Impact,sans-serif;letter-spacing:.02em;margin:0}
+.bench-row h3 a{color:var(--paper-ink);text-decoration:none}
+.bench-row h3 a:hover{text-decoration:underline}
+.bench-meta{margin:4px 0 0!important;font-size:16px!important}
+.stamp{font:800 18px/1 "Big Shoulders Stencil Display",Impact,sans-serif;letter-spacing:.12em;color:var(--accent);
+  border:3px solid var(--accent);border-radius:4px;padding:5px 8px 3px;transform:rotate(-4deg)}
+.stamp.free{color:var(--paper-ink);border-color:var(--rule);transform:none}
+.bench-acts{display:flex;gap:8px}
+.bench-acts .btn{font-size:16px;padding:10px 14px}
+.empty{font-size:18px}
+.rest{columns:2;column-gap:32px;padding-left:20px;margin:0}
+.rest li{margin:0 0 8px;break-inside:avoid}
+.flash{background:var(--tag);color:var(--tag-ink);border-left:6px solid #2F5A1E;padding:12px 14px;font-weight:600;margin:0 0 18px}
+.flash.bad{border-left-color:#7C2A1C}
+.backup-card{background:#FCF6E8;color:var(--tag-ink);border:2px solid var(--tag-edge);border-radius:8px;padding:20px}
+.backup-card p{color:var(--tag-ink)}
+.backup-card .btn.ghost{color:var(--tag-ink)}
+.acts{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:6px}
+.file-btn{position:relative;overflow:hidden}
+.file-btn input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+.file-btn:focus-within{outline:3px solid var(--ink);outline-offset:2px}
+.restore{margin-top:16px;border-top:2px dashed var(--tag-edge);padding-top:14px}
+@media (max-width:640px){
+  .bench-row{grid-template-columns:1fr auto}
+  .bench-acts{grid-column:1 / -1}
+  .rest{columns:1}
+}
+</style>
+<script data-goatcounter="https://familyformals.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script src="/site.js" defer></script>
+</head>
+<body>
+
+<header class="board short">
+  <div class="wrap narrow bar">
+    <p class="mark"><a href="/">SAMSBENCH</a></p>
+    <nav class="topnav" aria-label="Site"><a href="/">All tools</a><a href="/my/" aria-current="page">Your bench</a><a href="/#ask">Ask for a tool</a><a href="/about/">About</a></nav>
+  </div>
+</header>
+
+<main class="paper">
+  <article class="wrap narrow prose">
+    <h1>Your bench</h1>
+    <p>Everything the tools saved in this browser, on this device. This page reads it right here; none of it is sent anywhere.</p>
+
+    <p class="flash" id="flash" role="status" aria-live="polite" hidden></p>
+    <p class="count" id="bench-count">Looking&hellip;</p>
+    <ul class="bench-list" id="bench"></ul>
+
+    <section id="backup" aria-labelledby="backup-h">
+      <h2 id="backup-h">One backup file for every tool</h2>
+      <div class="backup-card">
+        <p>Browsers can clear saved pages on their own (Safari does after about a week without a visit). Download a backup now and then, or before you switch phone or computer. To move your work, open this page on the other device and choose the file.</p>
+        <div class="acts">
+          <button type="button" class="btn" id="dl">Download a backup</button>
+          <label class="btn ghost file-btn">Open a backup file<input type="file" id="up" accept="application/json,.json"></label>
+        </div>
+        <div class="restore" id="restore" hidden>
+          <p id="restore-what"></p>
+          <div class="acts">
+            <button type="button" class="btn" id="restore-go">Put it back</button>
+            <button type="button" class="btn ghost" id="restore-no">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <p style="margin-top:14px">Bought Pro on another device? Open that tool and unlock it with the email you paid with; it works on any number of your devices.</p>
+    </section>
+
+    <section id="rest-wrap" hidden>
+      <h2>Not used here yet</h2>
+      <ul class="rest" id="rest"></ul>
+    </section>
+  </article>
+</main>
+
+<footer class="foot">
+  <div class="wrap narrow">samsbench · <a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/refund/">Refunds</a> · <a href="mailto:sam@samsbench.com">sam@samsbench.com</a></div>
+</footer>
+
+</body>
+</html>

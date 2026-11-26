@@ -6,6 +6,18 @@
 <title>Privacy · samsbench</title>
 <meta name="description" content="What the samsbench tools keep, what they send and to whom: your data stays in your browser; visit counts by GoatCounter; payments and purchase checks by Whop.">
 <link rel="canonical" href="https://samsbench.com/privacy/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="samsbench">
+<meta property="og:url" content="https://samsbench.com/privacy/">
+<meta property="og:title" content="Privacy · samsbench">
+<meta property="og:description" content="What the samsbench tools keep, what they send and to whom: your data stays in your browser; visit counts by GoatCounter; payments and purchase checks by Whop.">
+<meta property="og:image" content="https://samsbench.com/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#C9A272">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@700;800&family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -24,7 +36,10 @@
 <body>
 
 <header class="board short">
-  <div class="wrap narrow"><p class="mark"><a href="../">SAMSBENCH</a></p></div>
+  <div class="wrap narrow bar">
+    <p class="mark"><a href="/">SAMSBENCH</a></p>
+    <nav class="topnav" aria-label="Site"><a href="/">All tools</a><a href="/my/">Your bench</a><a href="/#ask">Ask for a tool</a><a href="/about/">About</a></nav>
+  </div>
 </header>
 
 <main class="paper">
@@ -33,13 +48,14 @@
     <p>Short version: what you type into a tool stays in your browser. There are no accounts. A few small things do leave your device, and they are all listed here.</p>
 
     <h2>What stays on your device</h2>
-    <p>Everything you type into a tool (names, lists, numbers, notes) is saved in your own browser on that device, so it is there next time. It is not uploaded to me. If you clear your browser data, or your browser clears it for you, it is gone. Some tools let you save a backup file; that file is yours.</p>
+    <p>Everything you type into a tool (names, lists, numbers, notes) is saved in your own browser on that device, so it is there next time. It is not uploaded to me. If you clear your browser data, or your browser clears it for you, it is gone. Some tools let you save a backup file, and <a href="/my/">Your bench</a> makes one file for every tool at once; the file is made in your browser and is yours.</p>
     <p>When you share a plan with someone, the plan travels inside the link itself. Anyone you give the link to can see what is in it.</p>
 
     <h2>What leaves your device</h2>
-    <p><b>Visit counts.</b> I count page visits and button presses (for example "printed the cards") with <a href="https://www.goatcounter.com/">GoatCounter</a>. It doesn't use cookies and doesn't track you across sites. It records the page, the referring site, a rough location from your IP address, screen size and browser, and a short code from the link you came from (like <code>?via=…</code>). It does not receive what you type into a tool.</p>
+    <p><b>Visit counts.</b> I count page visits and button presses (for example "printed the cards") with <a href="https://www.goatcounter.com/">GoatCounter</a>. It doesn't use cookies and doesn't track you across sites. It records the page, the referring site, a rough location from your IP address, screen size and browser, and a short code from the link you came from (like <code>?via=…</code>). It does not receive what you type into a tool. One exception on the home page: when a search for a tool finds nothing, the words you searched for are counted (nothing else about you), so I can see which tools people are looking for.</p>
+    <p><b>Asking for a tool.</b> The "Ask for a tool" note on the home page is sent by your own email app, so I only get it if you press send. Nothing is sent while you type.</p>
     <p><b>Unlocking Pro.</b> When you type the email you paid with, it is sent to a small checking service hosted on Whop, which asks Whop whether that email bought Pro for that tool and answers yes or no. When you type a gift code, a fingerprint of the code is sent to the same service. Nothing else is sent, and nothing is kept by me.</p>
-    <p><b>Paying.</b> Payments happen on <a href="https://whop.com/">Whop</a>. Whop handles your card and email under <a href="https://whop.com/privacy-policy/">its own privacy policy</a>; I see your email, what you bought and the amount, not your card.</p>
+    <p><b>Paying.</b> Payments happen on <a href="https://whop.com/">Whop</a>. Whop handles your card and email under <a href="https://whop.com/privacy/">its own privacy policy</a>; I see your email, what you bought and the amount, not your card.</p>
     <p><b>Whop ad pixel (Family Formals only).</b> The Family Formals page loads Whop's ad pixel, which tells Whop when someone views the page, starts using the planner or goes to checkout, so I can see whether Whop ads work. It is not loaded when the page is opened from a shared plan link, and it never receives the names in your list.</p>
     <p><b>Fonts.</b> The pages load their fonts from Google Fonts, so your browser asks Google's servers for them.</p>
     <p><b>Weather (Ship or Hold only).</b> When you press Check, Ship or Hold asks the US National Weather Service (api.weather.gov) for the forecast at the place you entered.</p>
@@ -55,7 +71,7 @@
 </main>
 
 <footer class="foot">
-  <div class="wrap narrow">samsbench · questions: <a href="mailto:sam@samsbench.com">sam@samsbench.com</a> · updated 25 Nov 2026</div>
+  <div class="wrap narrow">samsbench · questions: <a href="mailto:sam@samsbench.com">sam@samsbench.com</a> · updated 26 Nov 2026</div>
 </footer>
 
 </body>

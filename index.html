@@ -7,6 +7,28 @@
 <meta name="description" content="Small web tools, one job each: wedding family photos, food truck bookings, micro bakery bake days, recital running orders, handbell charts, village show prize money and more. Free to start, no sign-up, works on a phone.">
 <link rel="canonical" href="https://samsbench.com/">
 <meta name="p:domain_verify" content="02de9fec3d98bda171ea58de4adf4663"/>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#C9A272">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="samsbench">
+<meta property="og:url" content="https://samsbench.com/">
+<meta property="og:title" content="samsbench · small tools that do one job each">
+<meta property="og:description" content="17 small web tools for wedding photographers, food trucks, micro bakeries, dance studios, show secretaries and more. Free to start, no sign-up, works on a phone.">
+<meta property="og:image" content="https://samsbench.com/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"Organization","@id":"https://samsbench.com/#org","name":"samsbench","url":"https://samsbench.com/","logo":"https://samsbench.com/icon-512.png"},
+ {"@type":"WebSite","@id":"https://samsbench.com/#site","name":"samsbench","url":"https://samsbench.com/","publisher":{"@id":"https://samsbench.com/#org"},
+  "potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://samsbench.com/?q={search_term_string}"},"query-input":"required name=search_term_string"}}
+]}
+</script>
+<script src="/site.js" defer></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Stencil+Display:wght@700;800&family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
@@ -17,12 +39,42 @@
 
 <header class="board">
   <div class="wrap">
+    <nav class="topnav" aria-label="Site">
+      <a href="/my/">Your bench</a>
+      <a href="#ask">Ask for a tool</a>
+      <a href="/about/">About</a>
+    </nav>
     <h1 class="mark">SAMSBENCH</h1>
     <p class="lede">Small tools that do one job each. Free to use, no sign-up, works on a phone.</p>
 
-    <div class="rack rack-two">
+    <p class="mine" id="mine" hidden><b>On this device:</b> <span class="mine-list"></span> <a class="mine-go" href="/my/">Your bench &rarr;</a></p>
 
-      <div class="slot">
+    <form class="find" id="find" role="search" onsubmit="return false">
+      <label class="find-label" for="find-q">What do you do?</label>
+      <div class="find-row">
+        <input id="find-q" type="search" autocomplete="off" spellcheck="false" placeholder="florist, piano teacher, Airbnb, sourdough&hellip;">
+        <button type="button" id="find-clear" class="find-clear">Show all</button>
+      </div>
+      <div class="chips" aria-label="Filter by trade">
+        <button type="button" class="chip" data-trade="weddings" aria-pressed="false">Weddings &amp; events</button>
+        <button type="button" class="chip" data-trade="food" aria-pressed="false">Food</button>
+        <button type="button" class="chip" data-trade="music" aria-pressed="false">Music &amp; dance</button>
+        <button type="button" class="chip" data-trade="clubs" aria-pressed="false">Clubs &amp; shows</button>
+        <button type="button" class="chip" data-trade="hobbies" aria-pressed="false">Hobbies</button>
+        <button type="button" class="chip" data-trade="makers" aria-pressed="false">Makers &amp; sellers</button>
+        <button type="button" class="chip" data-trade="services" aria-pressed="false">Freelance &amp; services</button>
+      </div>
+      <p class="find-status" id="find-status" role="status" aria-live="polite"></p>
+    </form>
+
+    <div class="none" id="find-none" hidden>
+      <p class="paint">NOTHING ON THE BENCH FOR &ldquo;<span id="none-q"></span>&rdquo; YET</p>
+      <p class="none-sub"><a href="#ask">Tell me the job you still do by hand</a>. That is how every tool here started.</p>
+    </div>
+
+    <div class="rack rack-two" data-rack>
+
+      <div class="slot" data-tool="family-formals">
         <span class="peg" aria-hidden="true"></span>
         <a class="obj clipboard" href="https://samsbench.com/family-formals/?via=home" aria-label="Open Family Formals">
           <span class="clip" aria-hidden="true"></span>
@@ -37,7 +89,7 @@
         </div>
       </div>
 
-      <div class="slot">
+      <div class="slot" data-tool="food-truck-event">
         <span class="peg" aria-hidden="true"></span>
         <a class="obj receipt" href="https://samsbench.com/food-truck-event/?via=home" aria-label="Open Booking Check">
           <span class="bulldog" aria-hidden="true"></span>
@@ -53,131 +105,131 @@
 
     </div>
 
-    <h2 class="shelf">More on the bench</h2>
-    <ul class="minis">
-      <li class="mini">
+    <h2 class="shelf" data-hide-when-filtered>More on the bench</h2>
+    <ul class="minis" data-rack>
+      <li class="mini" data-tool="bake-day">
         <span class="peg" aria-hidden="true"></span>
         <div class="tag">
           <h3><a href="https://samsbench.com/bake-day/?via=home">Bake Day</a></h3>
           <p>For micro bakeries. Enter your breads and this bake's orders; get the dough totals, one levain build and a schedule worked back from oven-out.</p>
-          <p class="price"><b>Free to start.</b> <a href="https://samsbench.com/bake-day/?via=home">Open it</a></p>
+          <p class="price"><b>Free to start.</b> Pro <span class="nw">$9 once.</span> <a href="https://samsbench.com/bake-day/?via=home">Open it</a></p>
         </div>
       </li>
-      <li class="mini">
+      <li class="mini" data-tool="bunch-order">
         <span class="peg" aria-hidden="true"></span>
         <div class="tag">
           <h3><a href="https://samsbench.com/bunch-order/?via=home">Bunch Order</a></h3>
           <p>For event florists. Enter recipes and piece counts; get the wholesale order rounded up to full bunches, and each event's flower cost.</p>
-          <p class="price"><b>Free to start.</b> <a href="https://samsbench.com/bunch-order/?via=home">Open it</a></p>
+          <p class="price"><b>Free to start.</b> Pro <span class="nw">$29 once.</span> <a href="https://samsbench.com/bunch-order/?via=home">Open it</a></p>
         </div>
       </li>
-      <li class="mini">
+      <li class="mini" data-tool="recital-order">
         <span class="peg" aria-hidden="true"></span>
         <div class="tag">
           <h3><a href="https://samsbench.com/recital-order/?via=home">Recital Order</a></h3>
           <p>For dance studios. Paste the routines and who dances in them; get a running order with time for every costume change.</p>
-          <p class="price"><b>Free to start.</b> <a href="https://samsbench.com/recital-order/?via=home">Open it</a></p>
+          <p class="price"><b>Free to start.</b> Pro <span class="nw">$29 once.</span> <a href="https://samsbench.com/recital-order/?via=home">Open it</a></p>
         </div>
       </li>
-      <li class="mini">
+      <li class="mini" data-tool="lesson-slots">
         <span class="peg" aria-hidden="true"></span>
         <div class="tag">
           <h3><a href="https://samsbench.com/lesson-slots/?via=home">Lesson Slots</a></h3>
           <p>For private music teachers. Paste when each family can come; get the weekly lesson schedule, with siblings back to back.</p>
-          <p class="price"><b>Free to start.</b> <a href="https://samsbench.com/lesson-slots/?via=home">Open it</a></p>
+          <p class="price"><b>Free to start.</b> Pro <span class="nw">$19 once.</span> <a href="https://samsbench.com/lesson-slots/?via=home">Open it</a></p>
         </div>
       </li>
-      <li class="mini">
+      <li class="mini" data-tool="show-secretary">
         <span class="peg" aria-hidden="true"></span>
         <div class="tag">
           <h3><a href="https://samsbench.com/show-secretary/?via=home">Show Secretary</a></h3>
           <p>For the secretary of a flower, produce or village show. Entries, exhibit cards, prize money and cup winners, worked out.</p>
-          <p class="price"><b>Free to start.</b> <a href="https://samsbench.com/show-secretary/?via=home">Open it</a></p>
+          <p class="price"><b>Free to start.</b> Pro <span class="nw">$29 once.</span> <a href="https://samsbench.com/show-secretary/?via=home">Open it</a></p>
         </div>
       </li>
-      <li class="mini">
+      <li class="mini" data-tool="fair-season">
         <span class="peg" aria-hidden="true"></span>
         <div class="tag">
           <h3><a href="https://samsbench.com/fair-season/?via=home">Show Season</a></h3>
           <p>For artists who apply to art fairs. Every show on one page: same-weekend clashes, and which booth fee is due before you hear back.</p>
-          <p class="price"><b>Free to start.</b> <a href="https://samsbench.com/fair-season/?via=home">Open it</a></p>
+          <p class="price"><b>Free to start.</b> Pro <span class="nw">$15 once.</span> <a href="https://samsbench.com/fair-season/?via=home">Open it</a></p>
         </div>
       </li>
-      <li class="mini">
+      <li class="mini" data-tool="handbell-chart">
         <span class="peg" aria-hidden="true"></span>
         <div class="tag">
           <h3><a href="https://samsbench.com/handbell-chart/?via=home">Handbell Chart</a></h3>
           <p>For handbell directors. Bell assignments for the ringers you actually have; someone out on Sunday, re-split in one tap.</p>
-          <p class="price"><b>Free to start.</b> <a href="https://samsbench.com/handbell-chart/?via=home">Open it</a></p>
+          <p class="price"><b>Free to start.</b> Pro <span class="nw">$9 once.</span> <a href="https://samsbench.com/handbell-chart/?via=home">Open it</a></p>
         </div>
       </li>
-      <li class="mini">
+      <li class="mini" data-tool="discgolf-league">
         <span class="peg" aria-hidden="true"></span>
         <div class="tag">
           <h3><a href="https://samsbench.com/discgolf-league/?via=home">Tag Night</a></h3>
           <p>For disc golf league organizers. Paste the UDisc results; get bag tags, payouts per division and the ace pot.</p>
-          <p class="price"><b>Free to start.</b> <a href="https://samsbench.com/discgolf-league/?via=home">Open it</a></p>
+          <p class="price"><b>Free to start.</b> Pro <span class="nw">$9 once.</span> <a href="https://samsbench.com/discgolf-league/?via=home">Open it</a></p>
         </div>
       </li>
-      <li class="mini">
+      <li class="mini" data-tool="car-cards">
         <span class="peg" aria-hidden="true"></span>
         <div class="tag">
           <h3><a href="https://samsbench.com/car-cards/?via=home">Car Card Press</a></h3>
           <p>For model railroaders. Type the freight car roster once; print car cards and waybills on plain paper.</p>
-          <p class="price"><b>Free to start.</b> <a href="https://samsbench.com/car-cards/?via=home">Open it</a></p>
+          <p class="price"><b>Free to start.</b> Pro <span class="nw">$9 once.</span> <a href="https://samsbench.com/car-cards/?via=home">Open it</a></p>
         </div>
       </li>
-      <li class="mini">
+      <li class="mini" data-tool="observing-log">
         <span class="peg" aria-hidden="true"></span>
         <div class="tag">
           <h3><a href="https://samsbench.com/observing-log/?via=home">Observing Log</a></h3>
           <p>For Astronomical League programs: Messier, Caldwell, Herschel 400. Checks every entry and prints the log your club signs.</p>
-          <p class="price"><b>Free to start.</b> <a href="https://samsbench.com/observing-log/?via=home">Open it</a></p>
+          <p class="price"><b>Free to start.</b> Pro <span class="nw">$9 once.</span> <a href="https://samsbench.com/observing-log/?via=home">Open it</a></p>
         </div>
       </li>
-      <li class="mini">
+      <li class="mini" data-tool="ship-or-hold">
         <span class="peg" aria-hidden="true"></span>
         <div class="tag">
           <h3><a href="https://samsbench.com/ship-or-hold/?via=home">Ship or Hold</a></h3>
           <p>For sellers who mail live plants and animals. Paste your orders; see each route's weather and whether to ship, add a heat pack, or hold.</p>
-          <p class="price"><b>Free to start.</b> <a href="https://samsbench.com/ship-or-hold/?via=home">Open it</a></p>
+          <p class="price"><b>Free to start.</b> Pro <span class="nw">$19 once.</span> <a href="https://samsbench.com/ship-or-hold/?via=home">Open it</a></p>
         </div>
       </li>
-      <li class="mini">
+      <li class="mini" data-tool="cohost-statement">
         <span class="peg" aria-hidden="true"></span>
         <div class="tag">
           <h3><a href="https://samsbench.com/cohost-statement/?via=home">Co-Host Statement</a></h3>
           <p>For Airbnb co-hosts. Drop in Airbnb's earnings file; get the month's statement for the owner, and who owes whom.</p>
-          <p class="price"><b>Free to start.</b> <a href="https://samsbench.com/cohost-statement/?via=home">Open it</a></p>
+          <p class="price"><b>Free to start.</b> Pro <span class="nw">$49 once.</span> <a href="https://samsbench.com/cohost-statement/?via=home">Open it</a></p>
         </div>
       </li>
-      <li class="mini">
+      <li class="mini" data-tool="rate-raise">
         <span class="peg" aria-hidden="true"></span>
         <div class="tag">
           <h3><a href="https://samsbench.com/rate-raise/?via=home">Rate Raise</a></h3>
           <p>For cleaners, lawn, pool and window pros. See which regular clients are under your rate, and get a raise letter for each.</p>
-          <p class="price"><b>Free to start.</b> <a href="https://samsbench.com/rate-raise/?via=home">Open it</a></p>
+          <p class="price"><b>Free to start.</b> Pro <span class="nw">$19 once.</span> <a href="https://samsbench.com/rate-raise/?via=home">Open it</a></p>
         </div>
       </li>
-      <li class="mini">
+      <li class="mini" data-tool="bond-hours">
         <span class="peg" aria-hidden="true"></span>
         <div class="tag">
           <h3><a href="https://samsbench.com/bond-hours/?via=home">Bond Hours</a></h3>
           <p>For youth hockey and sports associations. Paste the families and the volunteer log; see which bond cheques to hand back and which to cash.</p>
-          <p class="price"><b>Free to start.</b> <a href="https://samsbench.com/bond-hours/?via=home">Open it</a></p>
+          <p class="price"><b>Free to start.</b> Pro <span class="nw">$49 once.</span> <a href="https://samsbench.com/bond-hours/?via=home">Open it</a></p>
         </div>
       </li>
-      <li class="mini">
+      <li class="mini" data-tool="fuzzy-grid">
         <span class="peg" aria-hidden="true"></span>
         <div class="tag">
           <h3><a href="https://samsbench.com/fuzzy-grid/?via=home">Fuzzy Grid</a></h3>
           <p>For freelance translators. Paste a CAT match analysis; see what the agency's fuzzy grid really pays you per word.</p>
-          <p class="price"><b>Free to start.</b> <a href="https://samsbench.com/fuzzy-grid/?via=home">Open it</a></p>
+          <p class="price"><b>Free to start.</b> Pro <span class="nw">$15 once.</span> <a href="https://samsbench.com/fuzzy-grid/?via=home">Open it</a></p>
         </div>
       </li>
-      <li class="mini mini-empty" aria-label="Empty spot for the next tool">
+      <li class="mini mini-empty" data-hide-when-filtered>
         <span class="peg" aria-hidden="true"></span>
-        <p class="paint">NEXT TOOL HANGS HERE</p>
+        <a class="paint" href="#ask">NEXT TOOL HANGS HERE. <span class="paint-sub">Tell me what it should do</span></a>
       </li>
     </ul>
   </div>
@@ -195,13 +247,36 @@
 
     <div class="maker">
       <p>Made by Sam. Each tool starts from a job people still do on paper or in a spreadsheet, and complain about.</p>
-      <p><a href="about/">How the tools get made</a></p>
+      <p><a href="/about/">How the tools get made</a> · <a href="/my/">Back up your work from every tool in one file</a></p>
     </div>
+
+    <section class="ask" id="ask" aria-labelledby="ask-h">
+      <h2 class="h" id="ask-h">Still doing a job on paper? Tell me which.</h2>
+      <p class="ask-lede">Every tool on the bench began as someone's spreadsheet or clipboard. Write down yours; if other people complain about the same job and a chatbot can't already do it, it goes on the list.</p>
+      <form id="ask-form" class="ask-card" novalidate>
+        <label for="ask-who">What you do</label>
+        <input id="ask-who" maxlength="80" placeholder="e.g. I run a dog grooming van" autocomplete="organization-title">
+        <label for="ask-job">The job you still do by hand</label>
+        <textarea id="ask-job" rows="4" maxlength="1500" placeholder="e.g. Every Sunday I work out the week's route and text each owner a time window"></textarea>
+        <label for="ask-now">How you do it now</label>
+        <select id="ask-now">
+          <option>On paper</option>
+          <option>In a spreadsheet</option>
+          <option>In an app I don't like</option>
+          <option>In my head</option>
+        </select>
+        <div class="ask-acts">
+          <button type="submit" class="btn">Email it to Sam</button>
+          <button type="button" class="btn ghost" id="ask-copy">Copy the note</button>
+        </div>
+        <p class="ask-msg" id="ask-msg" role="status" aria-live="polite"></p>
+      </form>
+    </section>
   </div>
 </main>
 
 <footer class="foot">
-  <div class="wrap narrow">samsbench · updated 25 Nov 2026 · <a href="about/">About</a> · <a href="privacy/">Privacy</a> · <a href="terms/">Terms</a> · <a href="refund/">Refunds</a> · <a href="mailto:sam@samsbench.com">sam@samsbench.com</a></div>
+  <div class="wrap narrow">samsbench · updated 26 Nov 2026 · <a href="/my/">Your bench</a> · <a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/refund/">Refunds</a> · <a href="mailto:sam@samsbench.com">sam@samsbench.com</a></div>
 </footer>
 
 </body>
